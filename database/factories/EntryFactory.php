@@ -13,6 +13,7 @@ class EntryFactory extends Factory
     public function definition(): array
     {
         return [
+            'title' => $this->faker->sentence($nbWords = 3),
             'text' => $this->faker->name(),
             'user_id' => $this->faker->unique()->randomElement(User::pluck('id')),
         ];
