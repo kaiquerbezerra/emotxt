@@ -17,16 +17,5 @@ class UserController extends Controller
     {
         $this->repository = $user;
     }
-
-
-    public function dashboard()
-    {
-        $user = Auth::user();
-        $entries = Entry::where('user_id', $user->id)->get();
-
-        return Inertia::render('Dashboard', [
-            'userId' => $user->id,
-            'entries' => $entries
-        ]);
-    }
+    
 }

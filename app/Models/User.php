@@ -24,7 +24,6 @@ class User extends Authenticatable
         'role',
         'responsible_id',
         'name',
-        'cpf',
         'password',
         'email',
         'cep',
@@ -75,29 +74,6 @@ class User extends Authenticatable
             }
         }
     }
-
-    public function setCpfAttribute($value)
-    {
-        $cpf = Metodos::somente_numero($value);
-        Metodos::validar_cpf($cpf);
-        $this->attributes['cpf'] = $cpf;
-    }
-
-    public function getCpfAttribute($value)
-    {
-        return Metodos::mascara_string($value, '###.###.###-##');
-    }
-
-    public function setCepAttribute($value)
-    {
-        $this->attributes['cep'] = Metodos::somente_numero($value);
-    }
-
-    public function getCepAttribute($value)
-    {
-        return Metodos::mascara_string($value, '##.###-###');
-    }
-
     public function responsible()
     {
         return $this->belongsTo(User::class, 'id');
